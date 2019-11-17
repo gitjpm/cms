@@ -60,10 +60,17 @@ Route::get('/find', function(){
 
 Route::get('/findwhere', function(){
 
-    $posts = Post::where('id', 5)->orderBy('id', 'desc')->take(1)->get();
+    $posts = Post::where('id', 2)->orderBy('id', 'desc')->take(1)->get();
 
     return $posts;
 
+
+});
+
+Route::get('/findmore', function(){
+
+    $post = new Post();
+    $post->hola()
 
 });
 
