@@ -67,11 +67,18 @@ Route::get('/findwhere', function(){
 
 });
 
-Route::get('/findmore', function(){
+Route::get('/hola', function(){
 
     $post = new Post();
-    $post->hola()
+    $post->hola();
 
+});
+
+Route::get('/findmore', function () {
+    $posts = Post::findOrFail(1);
+
+    return $posts;
+    
 });
 
 
