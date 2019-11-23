@@ -138,7 +138,11 @@ Route::get('/softdelete', function(){
 
 });
 
+Route::get('/readsoftdeleted', function () {
+    $post = Post::withTrashed()->where('id', 6)->get();
 
+    return $post;
+});
 
 
 //Route::get('/post/{name}', 'PostsController@index');
