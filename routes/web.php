@@ -81,7 +81,36 @@ Route::get('/findmore', function () {
     
 });
 
+Route::get('/basicinsert', function(){
 
+    $post = new Post();
+
+    $post->title = 'El nuevo titulo';
+    $post->content = 'Este es el contenido';
+    
+    $post->save();
+
+});
+
+Route::get('/basicinsert2', function(){
+
+    $post = Post::find(2);
+
+    $post->title = 'El titulo';
+    $post->content = 'modificando el contenido...';
+    
+    $post->save();
+
+});
+
+Route::get('/create', function(){
+
+    Post::create(['title' => 'Post creado a partir de create', 'content' => 'contenido ...']);
+
+    //$post->insert();
+
+
+});
 
 //Route::get('/post/{name}', 'PostsController@index');
 
