@@ -60,7 +60,7 @@ Route::get('/find', function(){
 
 Route::get('/findwhere', function(){
 
-    $posts = Post::where('id', 2)->orderBy('id', 'desc')->take(1)->get();
+    $posts = Post::where('id', 6)->orderBy('id', 'desc')->take(1)->get();
 
     return $posts;
 
@@ -111,6 +111,35 @@ Route::get('/create', function(){
 
 
 });
+
+Route::get('/update', function(){
+
+    Post::where('id', 2)->where('is_admin', 0)->update(['title'=>'jajajaja']);    
+
+});
+
+
+Route::get('/delete', function(){
+
+    $post = App\Post::find(1);
+
+    $post->delete();
+
+});
+
+Route::get('/delete2', function () {
+    Post::destroy([2,5]);
+});
+
+
+Route::get('/softdelete', function(){
+
+    Post::find(6)->delete();
+
+});
+
+
+
 
 //Route::get('/post/{name}', 'PostsController@index');
 
