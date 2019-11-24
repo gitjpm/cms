@@ -1,6 +1,7 @@
 <?php
 
 use App\Post;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,7 +106,7 @@ Route::get('/basicinsert2', function(){
 
 Route::get('/create', function(){
 
-    Post::create(['title' => 'Post creado a partir de create', 'content' => 'contenido ...']);
+    Post::create(['title' => 'Post creado a partir de create', 'content' => 'contenido ...', 'user_id' => 1]);
 
     //$post->insert();
 
@@ -134,7 +135,7 @@ Route::get('/delete2', function () {
 
 Route::get('/softdelete', function(){
 
-    Post::find(6)->delete();
+    Post::find(7)->delete();
 
 });
 
@@ -142,6 +143,52 @@ Route::get('/readsoftdeleted', function () {
     $post = Post::withTrashed()->where('id', 6)->get();
 
     return $post;
+});
+
+Route::get('/restore', function(){
+
+    Post::withTrashed()->where('is_admin', 0)->restore();
+
+});
+
+Route::get('/forcedelete', function(){
+
+    Post::withTrashed()->find(7)->forceDelete();
+
+});
+
+Route::get('/user/{id}/post', function($id){
+
+    $thePost = User::find($id)->post;
+    return view('postjson')->with('thePost', $thePost);
+
+});
+
+Route::get('/post/{id}/user', function($id){
+    return Post::find($id)->user->name;
+});
+
+Route::get('/user/{id}/posts', function($id){
+
+    $user = User::find($id);
+
+    foreach($user->thePosts as $post){
+        echo $post->title;
+        echo "<br>";
+
+    }
+
+});
+
+// many to many
+Route::get('/user/{id}/role', function($id){
+
+    $user = User::find($id);
+
+    foreach($user->roles as $role){
+        return $role->name;
+    }
+
 });
 
 

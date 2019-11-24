@@ -13,11 +13,13 @@ class Post extends Model
 
     protected $fillable = [
         'title',
-        'content'
+        'content',
+        'user_id'
     ];
 
 
-    public function hola(){
-        echo 'jajaja';
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }
