@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Roles assigned to Users!');
         $this->call(PostsTableSeeder::class);
         $this->command->info('Posts inserted!');
+        $this->call(PhotosTableSeeder::class);
+        $this->command->info('Photos inserted (Users and Posts)!');
 
     }
 }

@@ -226,6 +226,7 @@ Route::get('/role/pivot', function () {
     }
 });
 
+// relacion polimorfica para sacar las fotos del usuario 1
 Route::get('/user/photos', function(){
     $user = User::find(1);
 
@@ -235,6 +236,11 @@ Route::get('/user/photos', function(){
 
 });
 
+// relacion polimorfica inversa
+Route::get('/photo/{id}/post', function ($id) {
+    $photo = Photo::findOrFail($id);
+    return $photo->imageable;
+});
 
 //Route::get('/post/{name}', 'PostsController@index');
 
