@@ -1,6 +1,7 @@
 <?php
 
 use App\Post;
+use App\Role;
 use App\User;
 
 /*
@@ -106,7 +107,7 @@ Route::get('/basicinsert2', function(){
 
 Route::get('/create', function(){
 
-    Post::create(['title' => 'Post creado a partir de create', 'content' => 'contenido ...', 'user_id' => 1]);
+    Post::create(['title' => 'Post creado a partir de create', 'content' => 'contenido ...']);
 
     //$post->insert();
 
@@ -172,7 +173,7 @@ Route::get('/user/{id}/posts', function($id){
 
     $user = User::find($id);
 
-    foreach($user->thePosts as $post){
+    foreach($user->posts as $post){
         echo $post->title;
         echo "<br>";
 
@@ -187,6 +188,49 @@ Route::get('/user/{id}/role', function($id){
 
     foreach($user->roles as $role){
         return $role->name;
+    }
+});
+
+Route::get('/role/{id}/users', function ($id) {
+
+    $role = Role::find($id);
+    $users = $role->users()->orderBy('name', 'desc')->get();
+
+    foreach($users as $user){
+        echo $user->name;
+        echo "<br>";
+    }
+    
+});
+
+Route::get('/user/pivot', function () {
+
+    $user = App\User::find(1);
+
+    foreach($user->roles as $role){
+        echo $role->pivot;
+        echo "<br>";
+
+    }
+});
+
+Route::get('/role/pivot', function () {
+
+    $role = Role::find(2);
+
+    foreach($role->users as $user){
+        echo $user->name." viene del pivot: <br>";
+        echo $user->pivot;
+        echo "<br><br>";
+
+    }
+});
+
+Route::get('/user/photos', function(){
+    $user = User::find(1);
+
+    foreach($user->photos as $photo){
+        return $photo;
     }
 
 });
