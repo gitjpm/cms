@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Photo;
 
 class PhotosTableSeeder extends Seeder
 {
@@ -19,7 +20,7 @@ class PhotosTableSeeder extends Seeder
             Photo::create([
                 'path' => 'user-foto'.random_int(10, 99).'.jpg',
                 'imageable_id' => $user->id,
-                'imageable_type' => 'App/User'
+                'imageable_type' => 'App\User'
             ]);
         }
 
@@ -28,7 +29,7 @@ class PhotosTableSeeder extends Seeder
             Photo::create([
                 'path' => 'post-photo'.random_int(10, 99).'.jpg',
                 'imageable_id' => $post->id,
-                'imageable_type' => 'App/Post'
+                'imageable_type' => 'App\Post'
             ]);
         }
 

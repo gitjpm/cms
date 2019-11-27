@@ -54,7 +54,5 @@ class User extends Authenticatable
        return $this->morphMany('App\Photo', 'imageable');
    }
 
-   public function getId(){
-       return $this->id;
-   }
+
 }
