@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Posts inserted!');
         $this->call(PhotosTableSeeder::class);
         $this->command->info('Photos inserted (Users and Posts)!');
+        $this->call(VideossTableSeeder::class);
+        $this->command->info('Videos inserted!');        
 
     }
 }
