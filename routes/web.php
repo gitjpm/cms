@@ -243,6 +243,21 @@ Route::get('/photo/{id}/user', function ($id) {
     return $photo->imageable;
 });
 
+// relacion polimorfica many to many
+Route::get('/post/{id}/tags', function ($id) {
+    $post = Post::find($id);
+
+    echo "<h1>".$post->title."</h1>";
+    echo "<h2>Tags:</h2>";
+    echo "<ul>";
+    foreach($post->tags as $tag){
+        echo "<li>".$tag->name."</li>";
+    }
+    echo "</ul>";
+
+});
+
+
 //Route::get('/post/{name}', 'PostsController@index');
 
 //Route::resource('posts', 'PostsController'); 
